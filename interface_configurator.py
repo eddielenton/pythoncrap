@@ -22,7 +22,6 @@ with open('input_data.csv', 'r') as read_obj:
     migration_list = list(map(tuple, csv_reader))
 
 
-
 for data in migration_list:
     old_switch = data[1]
     old_interface = data[2]
