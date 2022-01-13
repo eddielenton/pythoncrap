@@ -30,5 +30,5 @@ for data in migration_list:
     net_connect = ConnectHandler(**nxosv9000)
     command = "show run int " + old_interface
     output = net_connect.send_command(command)
-    config = output[200:]
+    config = output[202:]
     print(config)
