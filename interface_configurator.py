@@ -18,5 +18,6 @@ for data in migration_list:
     old_interface = data[2]
     new_switch = data[3]
     new_interface = data[4]
-    command = "show run int" + old_interface
-    print(command)
+    command = "show run int " + old_interface
+    output = net_connect.send_command(command)
+    print(output)
