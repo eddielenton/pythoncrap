@@ -24,13 +24,14 @@ for data in migration_list:
     # Send config to run on the old switch
     old_int_config = net_connect.send_command(get_config_command)
     # Connection details for the new switch
-    net_connect2 = ConnectHandler(device_type='cisco_nxos', host=new_switch, port=22, username='admin', password='Admin_1234!') 
-    # Prepare config to run on the old switch 
-    set_config_command = "Interface " + new_interface + "\n" + old_int_config
+    net_connect = ConnectHandler(device_type='cisco_nxos', host=new_switch, port=22, username='admin', password='Admin_1234!') 
+    # Prepare config to run on the old switch, including clearing any existing interface config
+    # Potentially need to add "switchport" command too
+    set_config_command = "default interface " + new_interface + "\n" + "Interface " + new_interface + "\n" + old_int_config
     # Convert multiline string to list
     list = []
     for line in set_config_command.split("\n"):
         list.append(line.lstrip())
     # Send config to run on the new switch
-    new_int_config = net_connect2.send_config_set(list)
+    new_int_config = net_connect.send_config_set(list)
     print(new_int_config)
