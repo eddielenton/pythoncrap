@@ -18,5 +18,5 @@ for data in migration_list:
     old_interface = data[2]
     new_switch = data[3]
     new_interface = data[4]
-    
+    print(old_switch)
 
