@@ -19,25 +19,10 @@ for data in migration_list:
     new_switch = data[3]
     new_interface = data[4]
     old_switch_creds = {
-    'device_type': 'cisco_nxos',
-    'host':   old_switch,
-    'username': 'admin',
-    'password': 'Admin_1234!',
-    'port' : 22,
-    'secret': 'Admin_1234!',
-    }
-    new_switch_creds = {
-    'device_type': 'cisco_nxos',
-    'host':   new_switch,
-    'username': 'admin',
-    'password': 'Admin_1234!',
-    'port' : 22,
-    'secret': 'Admin_1234!',
-    }
-    net_connect = ConnectHandler(**old_switch_creds)
+    net_connect = ConnectHandler(device_type='cisco_nxos', host=old_switch, port=22,username='admin', password='Admin_1234!') 
     get_config_command = "show run int " + old_interface + " | grep ^\s"
     old_int_config = net_connect.send_command(get_config_command)
 
-    net_connect = ConnectHandler(**new_switch_creds)
+    net_connect = ConnectHandler(device_type='cisco_nxos', host=new_switch, port=22,username='admin', password='Admin_1234!') 
     set_config_command = "conf t\n" + old_int_config
     new_int_config = net_connect.send_command(set_config_command)
