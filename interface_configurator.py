@@ -11,9 +11,10 @@ with open('input_data.csv', 'r') as read_obj:
     # Get all rows of csv from csv_reader object as list of tuples
     migration_list = list(map(tuple, csv_reader))
 
+x = 1
 
 for data in migration_list:
-    old_switch = data[1]
+    old_switch = data[x]
     old_interface = data[2]
     new_switch = data[3]
     new_interface = data[4]
