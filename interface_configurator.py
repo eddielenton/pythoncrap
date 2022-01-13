@@ -27,8 +27,9 @@ for data in migration_list:
     old_interface = data[2]
     new_switch = data[3]
     new_interface = data[4]
-    net_connect = ConnectHandler(**nxosv9000)
+    net_connect = ConnectHandler(**old_switch)
     command = "show run int " + old_interface
-    output = net_connect.send_command(command)
-    config = output[202:]
-    print(config)
+    get_int_config = net_connect.send_command(command)
+    trimmed_config = get_int_config[202:]
+    net_connect = ConnectHandler(**new_switch)
+    get_int_config = net_connect.send_command(trimmed_config)
