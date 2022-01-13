@@ -13,10 +13,10 @@ with open('input_data.csv', 'r') as read_obj:
 
 
 for data in migration_list:
-    old_switch = device[0]
-    old_interface = device[1]
-    command = device.pop("command")
-    net_connect = Netmiko(**device)
+    old_switch = data[0]
+    old_interface = data[1]
+    command = data.pop("command")
+    net_connect = Netmiko(**data)
     output = net_connect.send_command(command)
 
 print(old_switch)
