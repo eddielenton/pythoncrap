@@ -27,3 +27,4 @@ for data in migration_list:
     for line in set_config_command.split("\n"):
         list.append(line.lstrip())
     new_int_config = net_connect2.send_config_set(list)
+    print(new_int_config)
