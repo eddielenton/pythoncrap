@@ -34,10 +34,10 @@ for data in migration_list:
     'port' : 22,
     'secret': 'Admin_1234!',
     }
-    net_connect = ConnectHandler(**old_switch)
+    net_connect = ConnectHandler(**old_switch_creds)
     get_config_command = "show run int " + old_interface + " | grep ^\s"
     old_int_config = net_connect.send_command(get_config_command)
 
-    net_connect = ConnectHandler(**new_switch)
+    net_connect = ConnectHandler(**new_switch_creds)
     set_config_command = "conf t\n" + old_int_config
     new_int_config = net_connect.send_command(set_config_command)
