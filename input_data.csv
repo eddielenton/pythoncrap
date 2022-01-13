@@ -1,4 +1,4 @@
-server1,old_switch_hostname1,old_interface1,new_switch_hostname1,new_interface1
+server1,nxosv9000,old_interface1,new_switch_hostname1,new_interface1
 server2,old_switch_hostname1,old_interface2,new_switch_hostname2,new_interface2
 server3,old_switch_hostname1,old_interface3,new_switch_hostname3,new_interface3
 server4,old_switch_hostname1,old_interface4,new_switch_hostname4,new_interface4
