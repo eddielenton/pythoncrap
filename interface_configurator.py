@@ -1,8 +1,18 @@
 #!/usr/bin/env python
 from __future__ import print_function, unicode_literals
 from netmiko import Netmiko
+from netmiko import ConnectHandler
 import csv
 from csv import reader
+
+nxosv9000 = {
+    'device_type': 'cisco_nxos',
+    'host':   'sandbox-nxos-1.cisco.com',
+    'username': 'admin',
+    'password': 'Admin_1234!',
+    'port' : 22,
+    'secret': 'Admin_1234!',
+}
 
 # open file in read mode
 with open('input_data.csv', 'r') as read_obj:
@@ -18,6 +28,7 @@ for data in migration_list:
     old_interface = data[2]
     new_switch = data[3]
     new_interface = data[4]
+    net_connect = ConnectHandler(**nxosv9000)
     command = "show run int " + old_interface
     output = net_connect.send_command(command)
     print(output)
