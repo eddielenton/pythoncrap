@@ -21,6 +21,9 @@ for data in migration_list:
     net_connect = ConnectHandler(device_type='cisco_nxos', host='sandbox-nxos-1.cisco.com', port=22, username='admin', password='Admin_1234!') 
     get_config_command = "show run int " + old_interface + " | grep ^\s"
     old_int_config = net_connect.send_command(get_config_command)
-    net_connect = ConnectHandler(device_type='cisco_nxos', host='sandbox-nxos-1.cisco.com', port=22, username='admin', password='Admin_1234!') 
-    set_config_command = "conf t\n" + old_int_config
-    new_int_config = net_connect.send_command(set_config_command)
+    net_connect2 = ConnectHandler(device_type='cisco_nxos', host='sandbox-nxos-1.cisco.com', port=22, username='admin', password='Admin_1234!') 
+    set_config_command = "Interface " + new_interface + "\n" + old_int_config
+    list = []
+    for line in set_config_command.split("\n"):
+        list.append(line.lstrip())
+    new_int_config = net_connect2.send_config_set(list)
